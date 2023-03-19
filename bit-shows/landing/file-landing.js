@@ -9,16 +9,17 @@ function mapShows(obj) {
     const cardShow = document.createElement("div");
     cardShow.classList.add("cardShowStyle");
     wrapper.append(cardShow);
-    const cardShowContent = document.createElement("figure");
-    cardShowContent.classList.add("cardShowContentStyle");
-    cardShow.append(cardShowContent);
     const cardShowImg = document.createElement("img");
     cardShowImg.setAttribute("src", element.image.medium);
-    cardShowContent.append(cardShowImg);
+    cardShow.append(cardShowImg);
     const cardShowName = document.createElement("p");
     cardShowName.classList.add("cardShowNameStyle");
     cardShowName.textContent = element.name;
-    cardShowContent.append(cardShowName);
+    cardShow.append(cardShowName);
+    cardShow.addEventListener("click", () => {
+      window.sessionStorage.setItem("clickedShow", JSON.stringify(element));
+      window.location.href = "../show-info/show-info.html";
+    });
   });
 }
 
@@ -30,6 +31,5 @@ newXML.onload = () => {
     );
     const filtereredShows = sorteredShows.filter((e, i) => i < 50);
     mapShows(filtereredShows);
-    console.log(filtereredShows);
   }
 };

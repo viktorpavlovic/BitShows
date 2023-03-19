@@ -2,9 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: "Source Code Pro";
 }
-
 header {
   margin: 0 auto;
   display: flex;
@@ -17,44 +15,46 @@ header {
 }
 header > input {
   padding: 5px;
+  width: 120px;
   border-radius: 5px;
   border: none;
 }
-h1 {
-  padding-top: 20px;
-  text-align: center;
-}
+
 main {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 30px 50px;
+  justify-content: space-around;
+  padding: 30px 230px;
   flex-grow: 1;
-  flex-wrap: wrap;
 }
 footer {
   width: 100%;
   height: 6vh;
+  font-size: 12px;
   background-color: #495057;
   display: flex;
   justify-content: space-around;
   align-items: center;
   color: #fff;
 }
-.cardShowStyle {
-  display: flex;
-  justify-content: center;
-  width: 30%;
+h1 {
   text-align: center;
+  padding-top: 20px;
+  font-weight: 500;
 }
-.cardShowContentStyle {
-  display: flex;
-  flex-direction: column;
+.show-details {
+  padding: 0 200px;
 }
-.cardShowNameStyle {
-  padding: 15px 5px;
-  text-align: left;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+.show-details > p {
+  padding: 15px 0;
+}
+.imgStyle {
+  width: 100%;
+}
+.right {
+  width: 100%;
+  padding: 20px;
+}
+.season-cast {
+  padding: 20px;
+  font-size: 15px;
 }

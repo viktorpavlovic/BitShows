@@ -1,8 +1,12 @@
 const wrapper = document.querySelector("main");
+const input = document.querySelector("input");
+const list = document.querySelector(".dropdown");
 
-const newXML = new XMLHttpRequest();
-newXML.open("GET", `http://api.tvmaze.com/shows`);
-newXML.send();
+const newXmlShows = new XMLHttpRequest();
+newXmlShows.open("GET", `http://api.tvmaze.com/shows`);
+newXmlShows.send();
+
+const newXmlSearch = new XMLHttpRequest();
 
 function mapShows(obj) {
   obj.forEach((element) => {
@@ -23,9 +27,9 @@ function mapShows(obj) {
   });
 }
 
-newXML.onload = () => {
-  if (newXML.status >= 200 && newXML.status < 400) {
-    const response = JSON.parse(newXML.response);
+newXmlShows.onload = () => {
+  if (newXmlShows.status >= 200 && newXmlShows.status < 400) {
+    const response = JSON.parse(newXmlShows.response);
     const sorteredShows = response.sort(
       (a, b) => b.rating.average - a.rating.average
     );
@@ -33,3 +37,30 @@ newXML.onload = () => {
     mapShows(filtereredShows);
   }
 };
+
+input.addEventListener("input", () => {
+  list.innerHTML = "";
+  newXmlSearch.open(
+    "GET",
+    `https://api.tvmaze.com/search/shows?q=${input.value}`
+  );
+  newXmlSearch.send();
+  newXmlSearch.onload = () => {
+    if (newXmlSearch.status >= 200 && newXmlSearch.status < 400) {
+      const responseSearch = JSON.parse(newXmlSearch.responseText);
+      PrintList(responseSearch);
+      input.addEventListener("change", () => {
+        list.innerHTML = "";
+      });
+    }
+  };
+});
+
+function PrintList(arr) {
+  arr.forEach((element) => {
+    const item = document.createElement("li");
+    item.textContent = element.show.name;
+    item.classList.add("itemStyle");
+    list.append(item);
+  });
+}

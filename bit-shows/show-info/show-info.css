@@ -15,11 +15,14 @@ header {
 }
 header > input {
   padding: 5px;
-  width: 120px;
+  width: 150px;
   border-radius: 5px;
   border: none;
 }
-
+header >a{
+  text-decoration: none;
+  color: #fff;
+}
 main {
   display: flex;
   justify-content: space-around;
